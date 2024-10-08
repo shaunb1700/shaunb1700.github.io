@@ -30,6 +30,22 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     }
   }
 
+// Function to send GET request
+      function sendGetRequest() {
+        const queryParams = getQueryParams();
+        const url = `https://httpbin.org/get?key=${encodeURIComponent(queryParams.key)}&value=${encodeURIComponent(queryParams.value)}`;
+
+        fetch(url)
+          .then(response => response.json())
+          .then(data => {
+            console.log('Success:', data);
+            // You can also display the response on the page if desired
+          })
+          .catch((error) => {
+            console.error('Error:', error);
+          });
+      }
+
   // Call the function when the page loads
   window.onload = pushToDataLayer;
 </script>
