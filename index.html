@@ -7,6 +7,31 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
 })(window,document,'script','dataLayer','GTM-TG3ZRPKR');</script>
 <!-- End Google Tag Manager -->
+<script>
+  // Function to get query parameters
+  function getQueryParams() {
+    const params = new URLSearchParams(window.location.search);
+    return {
+      key: params.get('key'), // Get the 'key' parameter
+      value: params.get('value') // Get the 'value' parameter
+    };
+  }
+
+  // Function to push to the data layer
+  function pushToDataLayer() {
+    const queryParams = getQueryParams();
+    if (queryParams.key && queryParams.value) {
+      window.dataLayer = window.dataLayer || []; // Ensure dataLayer is initialized
+      dataLayer.push({
+        event: 'queryParamsEvent', // Custom event name
+        [queryParams.key]: queryParams.value // Push key-value pair
+      });
+    }
+  }
+
+  // Call the function when the page loads
+  window.onload = pushToDataLayer;
+</script>
 </head>
 <html>
 <body>
